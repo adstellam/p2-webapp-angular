@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~material-icons/iconfont/material-icons.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+    box-sizing: border-box;
+}
+
+html { 
+    font-size: 62.5%; 
+}
+
+body { 
+    margin: 0; 
+    font-family: Poppines, Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.mat-tooltip.tooltip {
+    font-size: 1.6rem;
+}

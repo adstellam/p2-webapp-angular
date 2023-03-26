@@ -1,0 +1,61 @@
+
+<div #map id="map"></div>
+
+<div id="map-menu">
+    <div id="overlay-selection-menu">
+        <div style="padding: 6px; font-size: 14px;">
+            Select|Deselect Overlay Layers
+        </div>
+        <span id="drone-images" class="menu-item" (click)="onSelectMenuItem($event)">Drone Images</span>
+        <span id="application" class="menu-item" (click)="onSelectMenuItem($event)">Applications</span>
+        <span id="soil-condition" class="menu-item" (click)="onSelectMenuItem($event)">Soil Condition</span>
+        <span id="scouting" class="menu-item" (click)="onSelectMenuItem($event)">Scouting Data</span>
+    </div>
+    <hr>
+    <div id="heatmap-config-menu" *ngIf="! zoom_over_threshold">
+        <div style="padding: 6px; font-size: 14px;">
+            Choose and Configure Heatmap
+        </div>
+        <span id="size-heat" class="menu-tab selected" (click)="onSelectMenuTab($event)">Size</span>
+        <span id="hidx-heat" class="menu-tab" (click)="onSelectMenuTab($event)">Health</span>
+        <span id="edth-heat" class="menu-tab" (click)="onSelectMenuTab($event)">EDTH</span>
+        <div id="size-heat-cfg" class="menu-tab-card" *ngIf="heatmap_tab_selected_idx == 0">
+            <div style="margin: 24px; text-align: center;">
+                <label>0</label>
+                <input [formControl]="plant_size" type="range" min=0 max=30 step=1>
+                <label>30</label>
+                <br>
+                <p>Heatmap will show the cluster of plants the size of which is greater than {{plant_size.valueChanges | async}} cm.</p>
+            </div>
+        </div>
+        <div id="hidx-heat-cfg" class="menu-tab-card" *ngIf="heatmap_tab_selected_idx == 1">
+            <div style="margin: 18px; text-align: center;">
+                <label>0</label>
+                <input [formControl]="plant_hidx" type="range" min=0 max=100 step=10>
+                <label>100</label>
+                <br>
+                <p>Heatmap will show the cluster of plants the health index of which is greater than {{plant_hidx.valueChanges | async}}.</p>
+            </div>
+        </div>
+        <div id="edth-heat-cfg" class="menu-tab-card" *ngIf="heatmap_tab_selected_idx == 2">
+            The layer is not ready yet.
+
+        </div>
+    </div>
+</div>
+
+<div id="circle-color-legend" *ngIf="zoom_over_threshold">
+    <span class="legend-key" style="background-color: #ff99ff;"></span>
+    <span class="legend-key" style="background-color: #cc99ff;"></span>
+    <span class="legend-key" style="background-color: #99ccff;"></span>
+    <span class="legend-key" style="background-color: #3399ff;"></span>
+    <span class="legend-key" style="background-color: #0099ff;"></span>
+    <br>
+    <span class="legend-label">10</span>
+    <span class="legend-label">30</span>
+    <span class="legend-label">50</span>
+    <span class="legend-label">70</span>
+    <span class="legend-label">90</span>
+    <br>
+    <span class="legend-desc">Crop Health Index (0-100)</span>
+</div>

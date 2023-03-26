@@ -1,0 +1,44 @@
+<div id="sidebar">
+
+    <section class="info">
+        <span id="selected-cid">{{cid_input$ | async}}</span>
+        <span id="filler"></span>
+    </section>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill">
+            <mat-label>Select Cultivator</mat-label>
+            <mat-select formControlName="cid">
+                <mat-option *ngFor="let cid of cids; let i=index" value={{cid}}>
+                    <ng-container *ngIf="cultivator_status[i] == 'Active'">
+                        <mat-icon class="active-icon">stop</mat-icon><span style="display: inline-block; margin-left: -12px;">{{cid}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="cultivator_status[i] != 'Active'">
+                        <mat-icon class="inactive-icon">stop</mat-icon><span style="display: inline-block; margin-left: -12px;">{{cid}}</span>
+                    </ng-container>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <section class="status">
+        <ng-container *ngFor="let cid of cids; let i=index">
+            <div (click)="onClickCultivator(cid)">
+                <ng-container *ngIf="cultivator_status[i] == 'Active'">
+                    <span class="cid" style="background-color: #ff0000">{{cid}}</span>
+                    <span class="age">{{cultivator_status[i]}}</span>
+                </ng-container>
+                <ng-container *ngIf="cultivator_status[i] != 'Active'">
+                    <span class="cid" style="background-color: #a9a9a9">{{cid}}</span>
+                    <span class="age" style="color: #a9a9a9">{{cultivator_status[i]}}</span>
+                </ng-container>
+            </div>
+        </ng-container>
+    </section>
+
+</div>
+
+<div id="view-area"></div>
+
+<div id="enlarged-image-close" class="close">&times;</div>
+

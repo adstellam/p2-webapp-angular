@@ -1,0 +1,40 @@
+<div class="sidebar">
+
+	<div class="customer-logo-container">
+		<img src="{{customer_logo_path}}" alt={{oid}}>
+	</div>
+	<ul class="nav-list">
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'fleet-tracker']" routerLinkActive="active-link"><span class="li-label">Fleet Tracker</span></a>
+		</li>
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'fleet-view']" routerLinkActive="active-link"><span class="li-label">Fleet View</span></a>
+		</li>
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'crop-monitor']" routerLinkActive="active-link"><span class="li-label">Crop Monitor</span></a>
+		</li>
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'yield-analyzer']" routerLinkActive="active-link"><span class="li-label">Yield Analyzer</span></a>
+		</li>
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'cost-analyzer']" routerLinkActive="active-link"><span class="li-label">Cost Analyzer</span></a>
+		</li>
+		<li>
+            <a [routerLink]="['/customer-home', this.oid, 'admin-tasks']" routerLinkActive="active-link"><span class="li-label">Admin Tasks</span></a>
+		</li>
+	</ul>
+	<div class="customer-account-container">
+        <div>
+			<mat-icon class="accticon">account_box</mat-icon>
+		    <span class="userid">{{uid}}</span>
+        </div>
+        <div class="signout" (click)="onSignOut()">Sign Out</div>
+    </div>
+	
+</div>
+
+<div class="outlet-area">
+
+    <router-outlet></router-outlet>
+
+</div>

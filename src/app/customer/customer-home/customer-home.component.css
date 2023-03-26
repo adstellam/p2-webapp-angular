@@ -1,0 +1,106 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 210px;
+    background: #dcdcdc;
+    padding: 6px;
+    z-index: 99;
+}
+
+.customer-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customer-logo-container img {
+    width: 80%;
+    border-radius: 30%;
+}
+
+.nav-list {
+    margin: 64px 3px 16px 3px;
+    padding: 8px 8px 64px 8px;
+    background: #666699;
+}
+
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: flex;
+    height: 48px;
+    margin: 8px 0;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    text-decoration: none;
+}
+
+a .li-label {
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: font-size 0.2s;
+}
+
+a:hover {
+    border: 2px solid #fff;
+}
+
+
+a:hover .li-label {
+    font-size: 18px;
+}
+
+.active-link {
+    background-color: #b3b3cc;
+}
+
+.customer-account-container {
+    position: absolute;
+    left: 0;
+    bottom: 32px; 
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accticon {
+    display: inline-block;
+    color: gray;
+    vertical-align: middle;
+    transform: scale(1.6);
+}
+
+.userid {
+    display: inline-block;
+    margin-left: 12px;
+}
+
+.signout {
+    display: inline-block;
+    width: 120px;
+    height: 36px; 
+    margin: 12px;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    background-color: #ff0000; 
+    color: #fff; 
+}
+  
+.outlet-area {
+    position: fixed;
+    left: 218px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,127 @@
+<div mat-dialog-title>
+    <span>{{dialog_title}} </span>
+    <span id="change-cultivator-button" style="font-size: 11px; padding: 4px; background-color: #006699; color: #fff;" (click)="openCultivatorSelector()">Change Cultivator</span>
+    <br>
+    <span style="font-size: 18px;">{{dialog_subtitle}} </span>
+    <span id="change-days-button" style="font-size: 11px; padding: 4px; background-color: #006699; color: #fff;" (click)="openDaysSelector()">Change Duration</span>
+</div>
+
+<div mat-dialog-content>
+
+    <div class="table-container" [hidden]="use_chart">
+        <table mat-table [dataSource]="table_data_source" class="">
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span><b>Date</b></span></th>
+                <td mat-cell *matCellDef="let dobj">
+                    {{dobj.date.slice(0, 6)}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="distance">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span *ngIf="use_metric"><b>Distance</b><br>(meters/day)</span>
+                    <span *ngIf="!use_metric"><b>Distance</b><br>(yards/day)</span>
+                </th>
+                <td mat-cell *matCellDef="let dobj" [ngClass]="{'selected-column': form.controls.measure.value == 'distance'}">
+                    <span *ngIf="dobj.distance && use_metric">{{dobj.distance.toLocaleString('en-US')}}</span>
+                    <span *ngIf="dobj.distance && !use_metric">{{(dobj.distance * 1.094).toLocaleString('en-US')}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="avg_speed">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span *ngIf="use_metric"><b>Avg Speed</b><br>(meters/hr)</span>
+                    <span *ngIf="!use_metric"><b>Avg Speed</b><br>(yards/hr)</span>
+                </th>
+                <td mat-cell *matCellDef="let dobj" [ngClass]="{'selected-column': form.controls.measure.value == 'avg_speed'}">
+                    <span *ngIf="dobj.avg_speed">{{dobj.avg_speed.toLocaleString('en-US')}}</span>
+                    <span *ngIf="dobj.avg_speed">{{(dobj.avg_speed * 1.094).toLocaleString('en-US')}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="uptime">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span><b>Uptime</b><br>(min/day)</span>
+                </th>
+                <td mat-cell *matCellDef="let dobj" [ngClass]="{'selected-column': form.controls.measure.value == 'uptime'}">
+                    <span *ngIf="dobj.uptime">{{dobj.uptime.toLocaleString('en-US')}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="area">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span *ngIf="use_metric"><b>Area Covered</b><br>(sq-meters/day)</span>
+                    <span *ngIf="!use_metric"><b>Area Covered</b><br>(acres/day)</span>
+                </th>
+                <td mat-cell *matCellDef="let dobj" [ngClass]="{'selected-column': form.controls.measure.value == 'area'}">
+                    <span *ngIf="dobj.area && use_metric">{{dobj.area.toLocaleString('en-US')}}</span>
+                    <span *ngIf="dobj.area && !use_metric">{{(dobj.area * 0.000247).toLocaleString('en-US')}}</span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="crops">
+                <th mat-header-cell *matHeaderCellDef>
+                    <span><b>Crops Handled</b><br>(count/hr)</span>
+                </th>
+                <td mat-cell *matCellDef="let dobj" [ngClass]="{'selected-column': form.controls.measure.value == 'crops'}">
+                    <span *ngIf="dobj.crops">{{dobj.crops.toLocaleString('en-US')}}</span>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="table_columns"></tr> 
+            <tr mat-row *matRowDef="let row; columns: table_columns;"></tr>
+        </table>
+    </div>
+
+    <div class="chart-container" [hidden]="!use_chart">
+        <canvas id="canvas-for-analytics-chart"></canvas>
+    </div>
+
+    <div id="cultivator-selector" [hidden]="!show_cultivator_selector">
+        <mat-form-field appearance="fill">
+            <mat-label>Select Cultivator</mat-label>
+            <mat-select [formControl]="fc_cid">
+                <mat-option value="all">All</mat-option>
+                <mat-option *ngFor="let cid of cids; let i=index" value={{cid}}>
+                    <ng-container *ngIf="cultivator_status[i] == 'Active'">
+                        <mat-icon class="active-icon">stop</mat-icon><span style="display: inline-block; margin-left: -12px;">{{cid}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="cultivator_status[i] != 'Active'">
+                        <mat-icon class="inactive-icon">stop</mat-icon><span style="display: inline-block; margin-left: -12px;">{{cid}}</span>
+                    </ng-container>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div id="days-selector" [hidden]="!show_days_selector">
+        <mat-form-field appearance="fill">
+            <mat-label>Select New Duration</mat-label>
+            <mat-select [formControl]="fc_days">
+                <mat-option value="full">Full Duration</mat-option>
+                <mat-option *ngFor="let n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]" value={{n}}>{{n}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>
+
+<div mat-dialog-actions>
+
+    <form [formGroup]="form">
+        <mat-button-toggle-group formControlName="toggle">
+            <mat-button-toggle value="chart">Chart</mat-button-toggle>
+            <mat-button-toggle value="table">Table</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-radio-group formControlName="measure">
+            <mat-radio-button value="distance">Distance</mat-radio-button>
+            <mat-radio-button value="avg_speed">Avg Speed</mat-radio-button>
+            <mat-radio-button value="uptime">Uptime</mat-radio-button>
+            <mat-radio-button value="area">Area</mat-radio-button>
+            <mat-radio-button value="crops">Crops</mat-radio-button>
+        </mat-radio-group>
+    </form>
+
+    <mat-radio-group [formControl]="fc_unit">
+        <mat-radio-button value="metric">Metric</mat-radio-button>
+        <mat-radio-button value="imperial">Imperial</mat-radio-button>
+    </mat-radio-group>
+
+    <button mat-flat-button color="accent" class="close" (click)="closeDialog()">Close</button>
+
+</div>

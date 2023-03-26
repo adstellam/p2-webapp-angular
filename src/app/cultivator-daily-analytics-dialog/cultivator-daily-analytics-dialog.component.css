@@ -1,0 +1,110 @@
+::ng-deep .mat-dialog-container {
+    overflow-y: hidden !important;
+}
+
+
+.mat-dialog-title {
+    height: 10%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.mat-dialog-content {
+    height: 70%;
+}
+
+.mat-dialog-actions {
+    height: 20%;
+    justify-content: space-around;
+}
+
+table {
+    width: 80%;
+    margin: 24px 10% 0 10%;
+}
+
+th {
+    text-align: center !important;
+    font-size: 12px;
+    background-color: #ff6666;
+    color: #fff;
+}
+
+td {
+    text-align: right;
+    font-size: 12px;
+    padding-right: 16px !important;
+    background-color: #f2f2f2;
+}
+
+.mat-column-date {
+    width: 5% !important;
+    text-align: center !important;
+    font-size: 12px;
+}
+
+.mat-column-distance, .mat-column-avg_speed, .mat-column-uptime, .mat-column-area, .mat-column-crops {
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.mat-header-row {
+    height: 56px;
+}
+
+.mat-row {
+    height: 32px;
+}
+
+mat-button-toggle-group {
+    box-shadow: none;
+}
+  
+mat-button-toggle {
+    border: 1px rgba(0,0,0,0) solid !important;
+    padding: 4px !important;
+    z-index: 3 !important;
+}
+  
+mat-button-toggle:hover {
+    border: 1px #006699 solid !important;
+    background-color: #FFF !important;
+    border-radius: 5px !important;
+}
+  
+.mat-button-toggle-checked {
+    
+    border: 1px #006699 solid !important;
+    border-radius: 5px !important;
+    background-color: #006699 !important;
+    color: #fff;
+}
+
+.mat-button-toggle-input {
+    background-color: none !important;
+    padding-left: 32px !important;
+}
+
+mat-button-radio-group {
+    margin-left: 24px;
+}
+
+mat-radio-button {
+    padding-left: 8px;
+}
+
+.selected-column {
+    font-size: 14px !important;
+    background-color: #d3d3d3 !important;
+}
+
+.active-icon {
+    color: red;
+}
+
+.inactive-icon {
+    color: gray;
+}

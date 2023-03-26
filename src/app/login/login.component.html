@@ -1,0 +1,19 @@
+<div class="stout-logo-container">
+    <img src="../../../assets/images/stout/stout-logo-s.jpg" alt="Stout logo" class="stout-logo">
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="input-container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" name="uname" formControlName="username" placeholder="Enter Username" required>
+
+        <label for="pwd"><b>Password</b></label>
+        <input type="password" name="pwd" formControlName="password" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+    </div>
+    <div class="auxiliary-container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn" (click)="showReadMe()">Read Me</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+</form>

@@ -1,0 +1,129 @@
+#sidebar {
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: center;
+    background-color: #f2f2f2;
+    z-index: 2;
+}
+
+#sidebar .info {
+    display: flex;
+    margin: 12px;
+    padding: 12px;
+    justify-content: left;
+}
+
+#sidebar .info #selected-cid {
+    display: block;
+    width: 100px;
+    height: 48px;
+    color: #fff;
+    background-color: #ff0037;
+    text-align: center;
+    line-height: 48px;
+    font-size: 36px;
+}
+
+#sidebar .info #filler {
+    display: block;
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    background-color: #ff7b00;
+    text-align: center;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+#sidebar form {
+    margin: 12px;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #fff;
+}
+
+#sidebar form input {
+    margin-left: 8px;
+}
+
+#sidebar form select {
+    margin-left: 8px;
+}
+
+#sidebar form .blank {
+    display: inline-block;
+    width: 8px;
+}
+
+#sidebar .status {
+    display: block;
+    margin: 12px;
+}
+
+#sidebar .head {
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+#sidebar .cid {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 12px;
+    font-weight: 200;
+    color: #fff;
+}
+
+#sidebar .age {
+    display: inline-block;
+    height: 22px;
+    margin-left: 6px;
+    line-height: 22px;
+    font-size: 12px;
+}
+
+#view-area {
+    position: absolute;
+    left: 220px;
+    top: 0;
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.active-icon {
+    color: red;
+}
+
+.inactive-icon {
+    color: gray;
+}
+
+.close {
+    display: none;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: solid 1px #fff;
+    background-color: #9999ff;
+    color: #fff;
+  }
+
+  .close:hover,
+  .close:focus {
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+

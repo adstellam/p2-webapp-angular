@@ -1,0 +1,84 @@
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar {
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: center;
+    background-color: #f2f2f2;
+    z-index: 2;
+}
+
+#sidebar .selected-data-display-section {
+    display: flex;
+    margin: 12px;
+    padding: 12px;
+    justify-content: left;
+}
+
+#sidebar .selected-data-display-section #selected-cid {
+    display: block;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    background-color: #ff0037;
+    text-align: center;
+    line-height: 60px;
+    font-size: 36px;
+}
+
+#sidebar .selected-data-display-section #selected-days {
+    display: block;
+    width: 88px;
+    height: 60px;
+    color: #fff;
+    background-color: #ff7b00;
+    text-align: center;
+    line-height: 60px;
+    font-size: 14px;
+}
+
+#sidebar form {
+    margin: 12px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+#sidebar .analytics-dialog-buttons-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 12px;
+    padding: 12px;
+    
+}
+
+#sidebar .analytics-dialog-buttons-group button {
+    width: 100%;
+    height: 60px;
+    margin: 12px 0 12px 0;
+    font-size: 14px;
+}
+
+.active-icon {
+    color: red;
+}
+
+.inactive-icon {
+    color: gray;
+}
+
+.blank {
+    display: inline-block;
+    width: 8px;
+}
